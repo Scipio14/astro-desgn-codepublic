@@ -1,0 +1,38 @@
+---
+import Navbar from '../components/Navbar.astro'
+const {title} = Astro.props;
+---
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>{title}</title>
+
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href={Astro.resolve("../styles/global.css")}>
+
+	<style>
+		header {
+			display: flex;
+			flex-direction: column;
+			gap: 1em;
+			max-width: min(100%, 68ch);
+		}
+	</style>
+</head>
+<body>
+	  <div class="wrapper">
+     <Navbar/>
+      <main>
+      <slot/>
+	    </main>
+      <footer class="blur text-alt">
+        <small>Copyright &copy; <span id="copyrightYear"></span>Design</small>
+      </footer>
+    </div>
+  <script>
+   document.getElementById('copyrightYear').textContent =  new Date().getFullYear();
+  </script>  
+</body>
+</html>
